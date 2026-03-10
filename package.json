@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "start": "node scripts/cli.ts",
+    "init": "node scripts/cli.ts init",
+    "sync": "node scripts/cli.ts sync",
+    "check": "node scripts/cli.ts check",
+    "cleanup": "node scripts/cli.ts cleanup",
+    "prepare": "git submodule update --init --recursive"
+  },
+  "devDependencies": {
+    "@clack/prompts": "^0.11.0",
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.0"
+  }
+}

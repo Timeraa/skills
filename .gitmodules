@@ -1,0 +1,3 @@
+[submodule "sources/wxt"]
+	path = sources/wxt
+	url = https://github.com/wxt-dev/wxt
