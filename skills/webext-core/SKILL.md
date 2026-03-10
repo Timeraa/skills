@@ -245,6 +245,22 @@ import { sendMessage } from '~/shared/window-messaging';
 const pageData = await sendMessage('getPageData', undefined);
 ```
 
+### Custom Event Messaging (Alternative to Window Messaging)
+
+`defineCustomEventMessaging` uses `CustomEvent` instead of `window.postMessage`. Useful when `postMessage` conflicts with other libraries:
+
+```ts
+import { defineCustomEventMessaging } from '@webext-core/messaging';
+
+interface Protocol {
+  getData(): string;
+}
+
+export const { sendMessage, onMessage } = defineCustomEventMessaging<Protocol>({
+  namespace: 'my-extension',
+});
+```
+
 ### One Listener Per Type Rule
 
 Each message type can only have **one listener per context**. Adding a second listener for the same type replaces the first:
@@ -284,11 +300,10 @@ pattern.includes('https://other.com/');             // false
 | `*://*.example.com/*` | All subdomains of example.com, any scheme |
 | `https://example.com/path/*` | Specific path prefix |
 | `*://*/api/*` | Any host, path containing /api/ |
-| `file:///path/*` | Local file URLs |
 
 ### Wildcard Rules
 
-- **Scheme**: `*` matches `http` or `https` (not `file`, `ftp`)
+- **Scheme**: `*` matches `http` or `https` only
 - **Host**: `*.` prefix matches any subdomain (including no subdomain)
 - **Path**: `*` matches any characters
 
