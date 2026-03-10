@@ -15,6 +15,7 @@ npx skills add Timeraa/skills
 | Skill | Description |
 |-------|-------------|
 | `wxt` | Build browser extensions with WXT framework |
+| `webext-core` | Utilities for browser extensions - proxy services, messaging, match patterns, fake browser testing, job scheduling, and shadow DOM isolation |
 
 ## Development
 

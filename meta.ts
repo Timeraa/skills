@@ -9,6 +9,7 @@ export interface VendorSkillMeta {
  */
 export const submodules = {
   wxt: 'https://github.com/wxt-dev/wxt',
+  'webext-core': 'https://github.com/aklinker1/webext-core',
 }
 
 /**

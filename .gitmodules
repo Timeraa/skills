@@ -1,3 +1,6 @@
 [submodule "sources/wxt"]
 	path = sources/wxt
 	url = https://github.com/wxt-dev/wxt
+[submodule "sources/webext-core"]
+	path = sources/webext-core
+	url = https://github.com/aklinker1/webext-core
