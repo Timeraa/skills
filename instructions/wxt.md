@@ -22,17 +22,41 @@ Read the following files from `sources/wxt/` to generate a comprehensive WXT ski
 ### Storage API (separate package docs)
 - `docs/storage.md` or https://wxt.dev/storage.html - Full storage.defineItem API
 
-## Skill Structure
+## Output Structure
 
-The generated `skills/wxt/SKILL.md` should:
+The generated skill uses a **modular structure** — a concise overview plus topic-specific reference files.
 
-1. Have YAML frontmatter with `name` and `description`
-2. Cover all entrypoint types with file naming and definition APIs
-3. Include content script UI examples for all frameworks (Vue, React, Svelte, Solid)
-4. Document storage.defineItem with versioning and migrations
-5. Cover auto-imports, testing, modules, multi-browser targeting
-6. List common patterns and anti-patterns
-7. Be **generic and public** - no references to specific closed-source projects
+### `skills/wxt/SKILL.md` (overview, ≤500 words)
+
+Must contain:
+1. YAML frontmatter with `name` and `description`
+2. "When to Use" triggers (project signals, import patterns)
+3. Quick-reference table: topic → `references/<file>.md`
+4. The single most critical pattern/gotcha (e.g., `main()` cannot be async)
+
+### `skills/wxt/GENERATION.md`
+
+```md
+# Generation
+
+- Source: https://github.com/wxt-dev/wxt
+- Submodule path: sources/wxt
+```
+
+### `skills/wxt/references/` (one file per topic)
+
+| Reference file | Source docs → content |
+|---|---|
+| `config.md` | `config/` dir → wxt.config.ts, manifest, env vars, built-in env vars, TypeScript paths, runtime config, auto-imports, CLI |
+| `entrypoints.md` | `project-structure.md`, `entrypoints.md` → project layout, background, HTML pages, unlisted scripts, browser targeting |
+| `content-scripts.md` | `content-scripts.md`, `scripting.md` → content script definition, ctx, CSS, all 3 UI approaches (shadow root/integrated/iframe), main world, CustomEvent bridge, SPA navigation |
+| `storage.md` | `storage.md` → defineItem, fallback/init, versioning, migrations, watchers, metadata, bulk ops |
+| `messaging.md` | `messaging.md` → NPM package recommendations, proxy service pattern |
+| `testing.md` | `unit-testing.md` → WxtVitest setup, fakeBrowser, mocking auto-imports |
+| `modules.md` | `wxt-modules.md` → using published modules, creating local modules, build-time config, execution order |
+| `multi-browser.md` | `target-different-browsers.md` → build commands, runtime detection, entrypoint filtering |
+| `frontend-frameworks.md` | `frontend-frameworks.md` → Vue/React/Svelte/Solid setup, hash routing |
+| `patterns.md` | (synthesized) → service registration, storage event broadcasting, context invalidation, all anti-patterns |
 
 ## Key Principles
 
@@ -40,3 +64,4 @@ The generated `skills/wxt/SKILL.md` should:
 - Include framework-specific examples where WXT APIs differ across frameworks
 - Prioritize practical patterns over exhaustive API reference
 - Include the "why" behind anti-patterns, not just "don't do this"
+- `SKILL.md` must stay ≤500 words — detail belongs in `references/`
